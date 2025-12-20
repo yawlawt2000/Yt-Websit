@@ -18,6 +18,18 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
+}
+
+/* Snow Canvas */
+#snow{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
 }
 
 /* Card */
@@ -31,6 +43,8 @@ body{
   color:#fff;
   box-shadow:0 0 40px rgba(0,0,0,0.7);
   animation:fadeIn 1.2s ease;
+  z-index:2;
+  position:relative;
 }
 
 /* Logo Glow */
@@ -72,7 +86,6 @@ h1{
   margin:25px 0 10px;
   font-size:32px;
   letter-spacing:1px;
-  text-shadow:0 0 8px rgba(255,255,255,0.2);
 }
 
 p{
@@ -82,7 +95,7 @@ p{
   color:#cfcfcf;
 }
 
-/* Button Glow */
+/* Button */
 .download-btn{
   display:inline-flex;
   align-items:center;
@@ -96,59 +109,32 @@ p{
   font-size:18px;
   font-weight:600;
   background:linear-gradient(90deg,#3cb878,#2da0ff);
-  box-shadow:0 0 15px rgba(45,160,255,0.6);
   animation:buttonGlow 2s infinite alternate;
-  transition:transform .2s;
 }
 
-.download-btn:hover{
-  transform:scale(1.05);
-}
-
-.download-btn span{
-  font-size:22px;
-}
-
-/* Animations */
 @keyframes pulseGlow{
-  0%{
-    box-shadow:0 0 10px #4fc3ff,0 0 25px #4fc3ff;
-  }
-  50%{
-    box-shadow:0 0 25px #4fc3ff,0 0 50px #4fc3ff;
-  }
-  100%{
-    box-shadow:0 0 10px #4fc3ff,0 0 25px #4fc3ff;
-  }
+  0%{box-shadow:0 0 10px #4fc3ff,0 0 25px #4fc3ff;}
+  50%{box-shadow:0 0 25px #4fc3ff,0 0 50px #4fc3ff;}
+  100%{box-shadow:0 0 10px #4fc3ff,0 0 25px #4fc3ff;}
 }
 
 @keyframes buttonGlow{
-  from{
-    box-shadow:0 0 10px #2da0ff,0 0 20px #3cb878;
-  }
-  to{
-    box-shadow:0 0 25px #2da0ff,0 0 45px #3cb878;
-  }
+  from{box-shadow:0 0 10px #2da0ff,0 0 20px #3cb878;}
+  to{box-shadow:0 0 25px #2da0ff,0 0 45px #3cb878;}
 }
 
 @keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(30px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<canvas id="snow"></canvas>
 
-  <!-- Logo Image -->
+<div class="card">
   <div class="logo-wrapper">
     <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/icon.png" alt="JVPN Logo">
   </div>
@@ -157,10 +143,65 @@ p{
   <p>Premium VPN Services for Secure Browsing</p>
 
   <a href="https://github.com/yawlawt/YT-Plus-Apk/releases/download/V1.0.1/YT_PLUS_VPNcom.yt.plusv2.0.apk" class="download-btn">
-    <span>⬇</span> Download YT Plus APK
+    ⬇ Download YT Plus APK
   </a>
-
 </div>
+
+<script>
+const canvas = document.getElementById("snow");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+let flakes = [];
+
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+function createFlakes(){
+  flakes = [];
+  for(let i=0;i<120;i++){
+    flakes.push({
+      x:Math.random()*w,
+      y:Math.random()*h,
+      r:Math.random()*4+1,
+      d:Math.random()+1
+    });
+  }
+}
+createFlakes();
+
+function drawSnow(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle="rgba(255,255,255,0.8)";
+  ctx.beginPath();
+  flakes.forEach(f=>{
+    ctx.moveTo(f.x,f.y);
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true);
+  });
+  ctx.fill();
+  moveSnow();
+}
+
+let angle = 0;
+function moveSnow(){
+  angle += 0.01;
+  flakes.forEach(f=>{
+    f.y += Math.pow(f.d,2)+1;
+    f.x += Math.sin(angle)*0.5;
+
+    if(f.y > h){
+      f.y = -5;
+      f.x = Math.random()*w;
+    }
+  });
+}
+
+setInterval(drawSnow,25);
+</script>
 
 </body>
 </html>
