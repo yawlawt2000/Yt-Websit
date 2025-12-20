@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>YT Plus VPN – Christmas Special</title>
+<title>YT Plus VPN - Christmas</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box;font-family:"Segoe UI",Tahoma,sans-serif}
+*{
+  box-sizing:border-box;
+  font-family:"Segoe UI",Tahoma,sans-serif;
+}
 
 body{
   margin:0;
   min-height:100vh;
-  background:radial-gradient(circle at top,#8b0000,#0b3a1b 70%);
+  background:linear-gradient(135deg,#7a1f1f,#1b0f0f);
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  color:#fff;
 }
 
-/* Canvas */
-canvas{
+/* Canvas Effects */
+#effects{
   position:fixed;
   inset:0;
   pointer-events:none;
@@ -30,198 +32,188 @@ canvas{
 /* Card */
 .card{
   width:360px;
-  max-width:92%;
-  background:rgba(12,12,18,.95);
+  max-width:90%;
+  background:rgba(15,10,10,0.95);
   border-radius:24px;
-  padding:42px 26px;
+  padding:40px 25px;
   text-align:center;
+  color:#fff;
+  box-shadow:0 0 40px rgba(255,0,0,0.35);
+  animation:fadeIn 1.2s ease;
+  position:relative;
   z-index:2;
-  box-shadow:0 0 45px rgba(0,0,0,.8);
-  border:2px solid rgba(255,255,255,.08);
 }
 
-/* Bell */
-.bell{
-  position:absolute;
-  top:-28px;
-  right:18px;
-  font-size:34px;
-  cursor:pointer;
-  animation:bellAuto 6s infinite;
-  transform-origin:top center;
-}
-
-/* Bell Shake */
-@keyframes bellShake{
-  0%{transform:rotate(0deg)}
-  20%{transform:rotate(15deg)}
-  40%{transform:rotate(-15deg)}
-  60%{transform:rotate(10deg)}
-  80%{transform:rotate(-10deg)}
-  100%{transform:rotate(0deg)}
-}
-
-/* Auto gentle shake */
-@keyframes bellAuto{
-  0%,90%,100%{transform:rotate(0deg)}
-  92%{transform:rotate(10deg)}
-  94%{transform:rotate(-10deg)}
-  96%{transform:rotate(6deg)}
-  98%{transform:rotate(-6deg)}
-}
-
-/* Badge */
-.badge{
-  background:linear-gradient(90deg,#d40000,#1fa64a);
-  padding:6px 16px;
-  border-radius:20px;
-  font-weight:600;
-  margin-bottom:16px;
-  display:inline-block;
-}
-
-/* Logo */
-.logo{
-  width:120px;
-  height:120px;
-  margin:0 auto 20px;
+/* Logo Glow */
+.logo-wrapper{
+  width:130px;
+  height:130px;
+  margin:0 auto 25px;
   border-radius:50%;
-  border:3px solid #1fa64a;
+  border:3px solid #b71c1c;
   display:flex;
   align-items:center;
   justify-content:center;
-  animation:glow 2.5s infinite;
+  position:relative;
+  animation:christmasGlow 3s infinite;
 }
 
-.logo img{
-  width:65px;
-  filter:drop-shadow(0 0 10px #ff4444)
-         drop-shadow(0 0 20px #1fa64a);
+.logo-wrapper::after{
+  content:"";
+  position:absolute;
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  border:2px solid gold;
+  box-shadow:0 0 15px gold,0 0 35px gold;
 }
 
-h1{margin:15px 0 6px}
-p{margin:0 0 24px;color:#ddd}
+.logo-wrapper img{
+  width:70px;
+  height:70px;
+  z-index:1;
+  filter:drop-shadow(0 0 12px gold);
+}
+
+/* Text */
+h1{
+  margin:25px 0 10px;
+  font-size:32px;
+  color:#ffe082;
+}
+
+p{
+  margin:0 0 35px;
+  font-size:16px;
+  color:#f5f5f5;
+}
 
 /* Button */
-.btn{
-  display:block;
+.download-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
   width:100%;
   padding:16px;
   border-radius:30px;
-  background:linear-gradient(90deg,#d40000,#1fa64a);
   text-decoration:none;
   color:#fff;
   font-size:18px;
   font-weight:600;
-  animation:btnGlow 2s infinite alternate;
+  background:linear-gradient(90deg,#c62828,#2e7d32);
+  box-shadow:0 0 20px rgba(255,215,0,0.6);
+  animation:buttonGlow 2s infinite alternate;
 }
 
-.btn:hover{transform:scale(1.05)}
-
-@keyframes glow{
-  0%,100%{box-shadow:0 0 15px #1fa64a}
-  50%{box-shadow:0 0 40px #ff4444}
-}
-@keyframes btnGlow{
-  from{box-shadow:0 0 10px #d40000}
-  to{box-shadow:0 0 35px #1fa64a}
+.download-btn:hover{
+  transform:scale(1.05);
 }
 
-/* Santa */
-.santa{
-  position:fixed;
-  top:80px;
-  left:-160px;
-  font-size:64px;
-  z-index:3;
-  animation:santaFly 18s linear infinite;
+/* Animations */
+@keyframes christmasGlow{
+  0%{box-shadow:0 0 15px red,0 0 30px gold;}
+  50%{box-shadow:0 0 35px red,0 0 60px gold;}
+  100%{box-shadow:0 0 15px red,0 0 30px gold;}
 }
-@keyframes santaFly{
-  0%{transform:translateX(-200px)}
-  100%{transform:translateX(calc(100vw + 200px))}
+
+@keyframes buttonGlow{
+  from{box-shadow:0 0 15px red;}
+  to{box-shadow:0 0 35px gold;}
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="fx"></canvas>
-
-<div class="santa">🎅🎁</div>
+<canvas id="effects"></canvas>
 
 <div class="card">
-  <div class="bell" id="bell">🔔</div>
-
-  <div class="badge">🎄 Merry Christmas</div>
-
-  <div class="logo">
+  <div class="logo-wrapper">
     <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/icon.png">
   </div>
 
-  <h1>YT Plus VPN</h1>
-  <p>Secure & Premium VPN – Christmas Edition</p>
+  <h1>🎄 YT Plus VPN</h1>
+  <p>Christmas Special • Secure & Fast Browsing</p>
 
-  <a href="https://github.com/yawlawt/YT-Plus-Apk/releases/download/V1.0.1/YT_PLUS_VPNcom.yt.plusv2.0.apk" class="btn" onclick="playMusic()">
-    🎶 Play Jingle Bell & Download
+  <a href="#" class="download-btn">
+    🎁 Download YT Plus APK
   </a>
 </div>
 
-<!-- Sounds -->
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/12/22/audio_8b7c6c86a0.mp3">
-</audio>
-
-<audio id="bellSound">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2a8dbdfb68.mp3">
-</audio>
-
 <script>
-/* Canvas FX */
-const c=document.getElementById("fx");
-const ctx=c.getContext("2d");
-let w=c.width=innerWidth;
-let h=c.height=innerHeight;
+const canvas = document.getElementById("effects");
+const ctx = canvas.getContext("2d");
+
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
 
 /* Snow */
-let snow=[];
-for(let i=0;i<120;i++){
-  snow.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*3+1,s:Math.random()*1.5+.5});
+let snow = [];
+for(let i=0;i<140;i++){
+  snow.push({
+    x: Math.random()*w,
+    y: Math.random()*h,
+    r: Math.random()*3+1,
+    d: Math.random()*1.5+0.5
+  });
+}
+
+/* Sparkles */
+let sparkles=[];
+for(let i=0;i<50;i++){
+  sparkles.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*2+1,
+    a:Math.random()
+  });
 }
 
 function draw(){
   ctx.clearRect(0,0,w,h);
-  ctx.fillStyle="rgba(255,255,255,.9)";
-  snow.forEach(f=>{
-    ctx.beginPath();
-    ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
-    ctx.fill();
-    f.y+=f.s;
-    if(f.y>h){f.y=0;f.x=Math.random()*w}
+
+  /* Snow */
+  ctx.fillStyle="rgba(255,255,255,0.85)";
+  ctx.beginPath();
+  snow.forEach(s=>{
+    ctx.moveTo(s.x,s.y);
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
   });
+  ctx.fill();
+
+  snow.forEach(s=>{
+    s.y+=s.d;
+    if(s.y>h){
+      s.y=0;
+      s.x=Math.random()*w;
+    }
+  });
+
+  /* Sparkles */
+  sparkles.forEach(sp=>{
+    ctx.beginPath();
+    ctx.fillStyle=`rgba(255,215,0,${sp.a})`;
+    ctx.arc(sp.x,sp.y,sp.r,0,Math.PI*2);
+    ctx.fill();
+
+    sp.a+=(Math.random()-0.5)*0.05;
+    if(sp.a<0)sp.a=0;
+    if(sp.a>1)sp.a=1;
+  });
+
   requestAnimationFrame(draw);
 }
 draw();
 
-/* Music */
-function playMusic(){
-  const m=document.getElementById("music");
-  m.paused ? m.play() : m.pause();
-}
-
-/* Bell click */
-const bell=document.getElementById("bell");
-const bellSound=document.getElementById("bellSound");
-
-bell.addEventListener("click",()=>{
-  bell.style.animation="bellShake .6s";
-  bellSound.currentTime=0;
-  bellSound.play();
-  setTimeout(()=>bell.style.animation="bellAuto 6s infinite",600);
-});
-
-addEventListener("resize",()=>{
-  w=c.width=innerWidth;
-  h=c.height=innerHeight;
+window.addEventListener("resize",()=>{
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
 });
 </script>
 
