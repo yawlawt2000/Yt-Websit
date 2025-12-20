@@ -2,27 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>YT Plus VPN - Christmas</title>
+<title>YT Plus VPN – Christmas Special</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  box-sizing:border-box;
-  font-family:"Segoe UI",Tahoma,sans-serif;
-}
+*{box-sizing:border-box;font-family:"Segoe UI",Tahoma,sans-serif}
 
 body{
   margin:0;
   min-height:100vh;
-  background:linear-gradient(135deg,#7a0b0b,#0b3a1b);
+  background:radial-gradient(circle at top,#8b0000,#0b3a1b 70%);
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  color:#fff;
 }
 
-/* Snow & Sparkle Canvas */
-#fx{
+/* Canvas */
+canvas{
   position:fixed;
   inset:0;
   pointer-events:none;
@@ -32,38 +30,61 @@ body{
 /* Card */
 .card{
   width:360px;
-  max-width:90%;
-  background:rgba(10,10,15,0.92);
+  max-width:92%;
+  background:rgba(12,12,18,.95);
   border-radius:24px;
   padding:42px 26px;
   text-align:center;
-  color:#fff;
-  box-shadow:0 0 45px rgba(0,0,0,.8);
-  animation:fadeIn 1.2s ease;
-  position:relative;
   z-index:2;
-  border:2px solid rgba(255,255,255,.1);
+  box-shadow:0 0 45px rgba(0,0,0,.8);
+  border:2px solid rgba(255,255,255,.08);
 }
 
-/* Christmas Badge */
-.badge{
+/* Bell */
+.bell{
   position:absolute;
-  top:-14px;
-  left:50%;
-  transform:translateX(-50%);
+  top:-28px;
+  right:18px;
+  font-size:34px;
+  cursor:pointer;
+  animation:bellAuto 6s infinite;
+  transform-origin:top center;
+}
+
+/* Bell Shake */
+@keyframes bellShake{
+  0%{transform:rotate(0deg)}
+  20%{transform:rotate(15deg)}
+  40%{transform:rotate(-15deg)}
+  60%{transform:rotate(10deg)}
+  80%{transform:rotate(-10deg)}
+  100%{transform:rotate(0deg)}
+}
+
+/* Auto gentle shake */
+@keyframes bellAuto{
+  0%,90%,100%{transform:rotate(0deg)}
+  92%{transform:rotate(10deg)}
+  94%{transform:rotate(-10deg)}
+  96%{transform:rotate(6deg)}
+  98%{transform:rotate(-6deg)}
+}
+
+/* Badge */
+.badge{
   background:linear-gradient(90deg,#d40000,#1fa64a);
   padding:6px 16px;
   border-radius:20px;
-  font-size:14px;
   font-weight:600;
-  box-shadow:0 0 15px rgba(255,0,0,.6);
+  margin-bottom:16px;
+  display:inline-block;
 }
 
 /* Logo */
-.logo-wrapper{
-  width:130px;
-  height:130px;
-  margin:25px auto 25px;
+.logo{
+  width:120px;
+  height:120px;
+  margin:0 auto 20px;
   border-radius:50%;
   border:3px solid #1fa64a;
   display:flex;
@@ -72,57 +93,52 @@ body{
   animation:glow 2.5s infinite;
 }
 
-.logo-wrapper img{
-  width:70px;
-  filter:drop-shadow(0 0 15px #ff3b3b)
-         drop-shadow(0 0 25px #1fa64a);
+.logo img{
+  width:65px;
+  filter:drop-shadow(0 0 10px #ff4444)
+         drop-shadow(0 0 20px #1fa64a);
 }
 
-/* Text */
-h1{
-  margin:20px 0 8px;
-  font-size:30px;
-  letter-spacing:1px;
-}
-
-p{
-  margin:0 0 25px;
-  color:#dcdcdc;
-}
+h1{margin:15px 0 6px}
+p{margin:0 0 24px;color:#ddd}
 
 /* Button */
-.download-btn{
+.btn{
   display:block;
   width:100%;
   padding:16px;
   border-radius:30px;
+  background:linear-gradient(90deg,#d40000,#1fa64a);
   text-decoration:none;
   color:#fff;
   font-size:18px;
   font-weight:600;
-  background:linear-gradient(90deg,#d40000,#1fa64a);
-  box-shadow:0 0 20px rgba(255,0,0,.6);
   animation:btnGlow 2s infinite alternate;
 }
 
-.download-btn:hover{
-  transform:scale(1.05);
-}
+.btn:hover{transform:scale(1.05)}
 
-/* Animations */
 @keyframes glow{
-  0%,100%{box-shadow:0 0 15px #1fa64a;}
-  50%{box-shadow:0 0 40px #ff3b3b;}
+  0%,100%{box-shadow:0 0 15px #1fa64a}
+  50%{box-shadow:0 0 40px #ff4444}
 }
-
 @keyframes btnGlow{
-  from{box-shadow:0 0 10px #d40000;}
-  to{box-shadow:0 0 35px #1fa64a;}
+  from{box-shadow:0 0 10px #d40000}
+  to{box-shadow:0 0 35px #1fa64a}
 }
 
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
+/* Santa */
+.santa{
+  position:fixed;
+  top:80px;
+  left:-160px;
+  font-size:64px;
+  z-index:3;
+  animation:santaFly 18s linear infinite;
+}
+@keyframes santaFly{
+  0%{transform:translateX(-200px)}
+  100%{transform:translateX(calc(100vw + 200px))}
 }
 </style>
 </head>
@@ -131,78 +147,81 @@ p{
 
 <canvas id="fx"></canvas>
 
+<div class="santa">🎅🎁</div>
+
 <div class="card">
+  <div class="bell" id="bell">🔔</div>
+
   <div class="badge">🎄 Merry Christmas</div>
 
-  <div class="logo-wrapper">
+  <div class="logo">
     <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/icon.png">
   </div>
 
   <h1>YT Plus VPN</h1>
   <p>Secure & Premium VPN – Christmas Edition</p>
 
-  <a href="#" class="download-btn">
-    🎁 Download YT Plus APK
+  <a href="#" class="btn" onclick="playMusic()">
+    🎶 Play Jingle Bell & Download
   </a>
 </div>
 
-<script>
-const canvas = document.getElementById("fx");
-const ctx = canvas.getContext("2d");
+<!-- Sounds -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/12/22/audio_8b7c6c86a0.mp3">
+</audio>
 
-let w = canvas.width = innerWidth;
-let h = canvas.height = innerHeight;
+<audio id="bellSound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2a8dbdfb68.mp3">
+</audio>
+
+<script>
+/* Canvas FX */
+const c=document.getElementById("fx");
+const ctx=c.getContext("2d");
+let w=c.width=innerWidth;
+let h=c.height=innerHeight;
 
 /* Snow */
 let snow=[];
-for(let i=0;i<140;i++){
-  snow.push({
-    x:Math.random()*w,
-    y:Math.random()*h,
-    r:Math.random()*3+1,
-    s:Math.random()*1.5+0.5
-  });
-}
-
-/* Sparkles */
-let spark=[];
-for(let i=0;i<40;i++){
-  spark.push({
-    x:Math.random()*w,
-    y:Math.random()*h,
-    a:Math.random()
-  });
+for(let i=0;i<120;i++){
+  snow.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*3+1,s:Math.random()*1.5+.5});
 }
 
 function draw(){
   ctx.clearRect(0,0,w,h);
-
-  /* Snow */
-  ctx.fillStyle="rgba(255,255,255,0.9)";
+  ctx.fillStyle="rgba(255,255,255,.9)";
   snow.forEach(f=>{
     ctx.beginPath();
     ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
     ctx.fill();
     f.y+=f.s;
-    if(f.y>h){f.y=0;f.x=Math.random()*w;}
+    if(f.y>h){f.y=0;f.x=Math.random()*w}
   });
-
-  /* Sparkle */
-  spark.forEach(s=>{
-    ctx.fillStyle=`rgba(255,215,0,${s.a})`;
-    ctx.fillRect(s.x,s.y,2,2);
-    s.a += (Math.random()-0.5)*0.05;
-    if(s.a<0)s.a=0;
-    if(s.a>1)s.a=1;
-  });
-
   requestAnimationFrame(draw);
 }
 draw();
 
+/* Music */
+function playMusic(){
+  const m=document.getElementById("music");
+  m.paused ? m.play() : m.pause();
+}
+
+/* Bell click */
+const bell=document.getElementById("bell");
+const bellSound=document.getElementById("bellSound");
+
+bell.addEventListener("click",()=>{
+  bell.style.animation="bellShake .6s";
+  bellSound.currentTime=0;
+  bellSound.play();
+  setTimeout(()=>bell.style.animation="bellAuto 6s infinite",600);
+});
+
 addEventListener("resize",()=>{
-  w=canvas.width=innerWidth;
-  h=canvas.height=innerHeight;
+  w=c.width=innerWidth;
+  h=c.height=innerHeight;
 });
 </script>
 
