@@ -536,7 +536,29 @@
         }
     </style>
 </head>
-<body>
+<body><div class="top-clock">
+    <div class="clock-content">
+        <div class="clock-item">
+            <div class="clock-label">ONLINE USERS</div>
+            <div class="clock-value" id="online-users">0</div>
+        </div>
+
+        <div class="clock-item">
+            <div class="clock-label">DATE</div>
+            <div class="clock-value" id="english-date">Loading...</div>
+        </div>
+
+        <div class="clock-item">
+            <div class="clock-label">TIME</div>
+            <div class="clock-value" id="english-time">Loading...</div>
+        </div>
+
+        <div class="clock-item">
+            <div class="clock-label">DAY</div>
+            <div class="clock-value" id="english-day">Loading...</div>
+        </div>
+    </div>
+</div>
     <!-- English Clock at the very top -->
     <div class="top-clock">
         <div class="clock-content">
@@ -851,4 +873,4 @@ for (let i = 0; i < snowCount; i++) {
     document.body.appendChild(snow);
 }
 </script>
-</html>
+            </html>
