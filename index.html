@@ -1,229 +1,156 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSO VIP - Mobile Services</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-bg: #0f1115;
-            --card-bg: #1c1f26;
-            --accent-red: #ff3b47;
-            --accent-blue: #00bfff;
-            --accent-green: #26d367;
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-        }
+  <meta charset="UTF-8">
+  <title>KSO VIP</title>
+  <<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #000, #1a1a1a);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        body {
-            background-color: var(--primary-bg);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif, 'Pyidaungsu';
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-        }
+    .container {
+      width: 360px;
+      background: #111;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(255,0,0,0.3);
+    }
 
-        .wrapper {
-            width: 100%;
-            max-width: 420px;
-            padding: 20px;
-            background: linear-gradient(180deg, #1a1c22 0%, #0a0b0d 100%);
-            min-height: 100vh;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-        }
+    .logo {
+      text-align: center;
+      margin-bottom: 15px;
+    }
 
-        /* Header Section */
-        .header {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .logo img {
+      width: 80px;
+    }
 
-        .logo-box {
-            width: 90px;
-            height: 90px;
-            background: radial-gradient(circle, #ffcc00, #ff3300);
-            border-radius: 50%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 4px solid #ff3300;
-            box-shadow: 0 0 20px rgba(255, 51, 0, 0.5);
-            font-weight: 900;
-            font-size: 18px;
-            color: #222;
-        }
+    h1 {
+      text-align: center;
+      margin: 10px 0;
+      letter-spacing: 2px;
+    }
 
-        .brand-name {
-            font-size: 28px;
-            font-weight: bold;
-            margin: 15px 0 5px;
-            letter-spacing: 1px;
-        }
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 15px;
+    }
 
-        .tagline {
-            font-size: 13px;
-            color: var(--text-dim);
-            margin-bottom: 25px;
-        }
+    .btn-main {
+      background: linear-gradient(to right, #ff0000, #ff5e00);
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-        /* Social Icons */
-        .social-nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+    .card {
+      background: #1c1c1c;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-        .social-nav a {
-            color: var(--accent-blue);
-            font-size: 26px;
-            transition: transform 0.2s;
-        }
+    .card span {
+      font-size: 14px;
+    }
 
-        .social-nav a:hover { transform: scale(1.1); }
+    .call-btn {
+      background: #00c853;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        /* Category Label */
-        .category-label {
-            padding: 12px 15px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            margin: 20px 0 10px;
-        }
+    .section {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 12px;
+      font-size: 14px;
+      text-align: center;
+      font-weight: bold;
+    }
 
-        .true-label { background-color: var(--accent-red); }
-        .dtac-label { background-color: var(--accent-blue); color: #000; }
-
-        /* Package Cards */
-        .package-card {
-            background-color: var(--card-bg);
-            border: 1px solid #2d3139;
-            border-radius: 18px;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .package-info .code {
-            display: block;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .package-info .validity {
-            font-size: 14px;
-            color: #ff7e7e;
-        }
-
-        .call-action {
-            background-color: var(--accent-green);
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(38, 211, 103, 0.3);
-        }
-
-        /* Footer Button */
-        .download-btn {
-            background: linear-gradient(90deg, #ff3b47, #ff7e7e);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 15px;
-            text-decoration: none;
-            display: block;
-            margin-top: 30px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 59, 71, 0.4);
-        }
-
-        /* Chat Widget */
-        .chat-widget {
-            position: fixed;
-            bottom: 30px;
-            right: 25px;
-            background-color: #0084ff;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            box-shadow: 0 5px 20px rgba(0, 132, 255, 0.5);
-        }
-    </style>
+    .dtac { background: #00bcd4; }
+    .ais { background: #8bc34a; }
+    .apk {
+      background: red;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="header">
-        <div class="logo-box">KSO<br>VIP</div>
-        <div class="brand-name">KSO VIP</div>
-        <div class="tagline">ပရီမီယံ VPN ဝန်ဆောင်မှု ပက်ကေ့ချ်များ</div>
-    </div>
+<div class="container">
 
-    <div class="social-nav">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-telegram"></i></a>
-        <a href="#"><i class="fas fa-globe"></i></a>
-    </div>
+  <div class="logo">
+    <img src="https://via.placeholder.com/80" alt="KSO VIP">
+  </div>
 
-    <div class="category-label true-label">
-        <i class="fas fa-fire" style="margin-right: 10px;"></i> TRUE TWITTER မော်ဒယ်
-    </div>
+  <h1>KSO VIP</h1>
+  <div class="subtitle">မြန်မာ VPN အမြန်ဆုံး Package များ</div>
 
-    <div class="package-card">
-        <div class="package-info">
-            <span class="code">*900*3507#</span>
-            <span class="validity">၁ ရက် (၆ ဘတ်)</span>
-        </div>
-        <a href="tel:*900*3507#" class="call-action"><i class="fas fa-phone"></i></a>
-    </div>
+  <div class="btn-main">🔥 TRUE TWITTER VPN</div>
 
-    <div class="package-card">
-        <div class="package-info">
-            <span class="code">*900*3508#</span>
-            <span class="validity">၇ ရက် (၂၁ ဘတ်)</span>
-        </div>
-        <a href="tel:*900*3508#" class="call-action"><i class="fas fa-phone"></i></a>
-    </div>
+  <div class="card">
+    <span>*900*3507# (6 ရက်)</span>
+    <a href="tel:*900*3507#" class="call-btn">📞</a>
+  </div>
 
-    <div class="category-label dtac-label">
-        <i class="fas fa-bolt" style="margin-right: 10px;"></i> DTAC အမြန်မော်ဒယ်
-    </div>
+  <div class="card">
+    <span>*900*3508# (12 ရက်)</span>
+    <a href="tel:*900*3508#" class="call-btn">📞</a>
+  </div>
 
-    <div class="package-card">
-        <div class="package-info">
-            <span class="code">*177*15#</span>
-            <span class="validity">၁၅ ရက် (၁၅ ဘတ်)</span>
-        </div>
-        <a href="tel:*177*15#" class="call-action"><i class="fas fa-phone"></i></a>
-    </div>
+  <div class="card">
+    <span>*900*3509# (30 ရက်)</span>
+    <a href="tel:*900*3509#" class="call-btn">📞</a>
+  </div>
 
-    <a href="#" class="download-btn">
-        <i class="fas fa-download" style="margin-right: 8px;"></i> APK ဒေါင်းလုဒ်လုပ်ပါ
-    </a>
+  <div class="section dtac">⚡ DTAC Package</div>
+
+  <div class="card">
+    <span>*177*15# (7 ရက်)</span>
+    <a href="tel:*177*15#" class="call-btn">📞</a>
+  </div>
+
+  <div class="card">
+    <span>*177*30# (30 ရက်)</span>
+    <a href="tel:*177*30#" class="call-btn">📞</a>
+  </div>
+
+  <div class="section ais">📶 AIS 64KBPS</div>
+
+  <div class="card">
+    <span>*777*7067# (30 ရက်)</span>
+    <a href="tel:*777*7067#" class="call-btn">📞</a>
+  </div>
+
+  <div class="card">
+    <span>*777*7068# (60 ရက်)</span>
+    <a href="tel:*777*7068#" class="call-btn">📞</a>
+  </div>
+
+  <div class="section apk">⬇ APK ဒေါင်းလုပ်လုပ်ပါ</div>
+
 </div>
-
-<a href="https://m.me/yourusername" class="chat-widget">
-    <i class="fab fa-facebook-messenger"></i>
-</a>
 
 </body>
 </html>
