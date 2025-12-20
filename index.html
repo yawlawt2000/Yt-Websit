@@ -3,157 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT PLUS VPN</title>
+    <title>YT PLUS VIP VPN</title>
     <style>
-        /* အခြေခံ Style များ */
+        :root {
+            --bg-color: #1e222d;
+            --card-bg: #272c39;
+            --primary-gradient: linear-gradient(135deg, #ff416c, #3f5efb);
+            --gold: #ff9800;
+        }
+
         body {
             margin: 0;
-            padding: 0;
             font-family: 'Segoe UI', sans-serif;
-            background-color: #1a1c24; /* Dark Background */
+            background-color: var(--bg-color);
             color: white;
-        }
-
-        /* Top Header */
-        .top-nav {
-            background: linear-gradient(to right, #e91e63, #673ab7);
-            padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-        }
-
-        header {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
         }
 
-        .logo { color: #ff9800; font-weight: bold; font-size: 20px; }
+        /* Top Banner */
+        .top-bar {
+            width: 100%;
+            background: linear-gradient(to right, #e91e63, #673ab7);
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-around;
+            font-size: 12px;
+            font-weight: bold;
+        }
 
-        /* Hero / Download Section */
-        .hero-card {
-            background: linear-gradient(135deg, #f44336, #673ab7);
-            margin: 20px;
-            padding: 40px 20px;
+        /* Navigation */
+        nav {
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo { color: var(--gold); font-size: 18px; font-weight: bold; }
+
+        /* Main Download Card */
+        .hero-section {
+            width: 90%;
+            max-width: 500px;
+            background: var(--primary-gradient);
             border-radius: 15px;
+            padding: 30px 20px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .download-btn {
-            background-color: #222;
+            background-color: #1a1c24;
             color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
+            padding: 10px 20px;
+            border-radius: 25px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            margin-top: 20px;
+            font-size: 14px;
+            margin-top: 15px;
         }
 
-        /* Screenshot Section */
-        .screenshots {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .screenshots img {
-            width: 150px;
-            border-radius: 15px;
-            border: 2px solid #333;
-        }
-
-        /* Subscription Section */
-        .pricing-section {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .pricing-container {
+        /* Screenshots */
+        .screenshot-container {
             display: flex;
             justify-content: center;
             gap: 15px;
-            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .screenshot-container img {
+            width: 140px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Pricing Section */
+        .section-title { color: var(--gold); margin-bottom: 20px; }
+
+        .plans {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 500px;
+            padding-bottom: 50px;
         }
 
         .plan-card {
-            background: linear-gradient(to bottom, #3f51b5, #e91e63);
-            width: 250px;
-            padding: 30px 20px;
+            background: linear-gradient(to bottom, #4e54c8, #df4383);
             border-radius: 15px;
-            margin-bottom: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .price { font-size: 28px; font-weight: bold; margin: 15px 0; }
-        .details { font-size: 13px; line-height: 2; margin-bottom: 20px; list-style: none; padding: 0;}
+        .plan-card h2 { font-size: 32px; margin: 10px 0; }
+        .plan-card ul { list-style: none; padding: 0; font-size: 13px; opacity: 0.9; }
+        .plan-card ul li { margin: 8px 0; }
 
         .get-plan-btn {
             background: white;
-            color: #e91e63;
-            padding: 10px 25px;
+            color: #df4383;
+            padding: 8px 25px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* Bottom Redeem Section */
+        .redeem-section {
+            width: 90%;
+            max-width: 500px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .redeem-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1c24;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .copy-btn {
+            background: #ff416c;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="top-nav">
+    <div class="top-bar">
         <span>December 20, 2025</span>
         <span>21:53:49</span>
         <span>Saturday</span>
     </div>
 
-    <header>
-        <div class="logo">YT PLUS VPN</div>
-        <div class="toggle-btn">🟡</div>
-    </header>
+    <nav>
+        <div class="logo">YT PLUS VIP VPN</div>
+        <div style="color:var(--gold)">●</div>
+    </nav>
 
-    <section class="hero-card">
-        <h2>Download YT PLUS VPN </h2>
-        <p>Get unlimited access to content with our high-speed VPN service</p>
-        <a href="https://github.com/yawlawt/YT-Plus-Apk/releases/download/V1.0.1/YT_PLUS_VPNcom.yt.plusv2.0.apk" class="download-btn">🚀 Download APK</a>
-    </section>
+    <div class="hero-section">
+        <h3>Download YT PLUS VIP VPN Now</h3>
+        <p style="font-size: 12px;">Get unlimited access to content with our high-speed VPN service</p>
+        <a href="#" class="download-btn">🚀 Download APK</a>
+    </div>
 
-    <section class="screenshots">
-        <img src="https://via.placeholder.com/150x300?text=App+Screen+1" alt="Screen 1">
-        <img src="https://via.placeholder.com/150x300?text=App+Screen+2" alt="Screen 2">
-    </section>
+    <div class="screenshot-container">
+        <img src="https://via.placeholder.com/140x280" alt="Screen 1">
+        <img src="https://via.placeholder.com/140x280" alt="Screen 2">
+    </div>
 
-    <section class="pricing-section">
-        <h2 style="color: #ff9800;">VIP Subscription Plans</h2>
-        <div class="pricing-container">
-            
-            <div class="plan-card">
-                <h3>1 Month Plan</h3>
-                <div class="price">50 THB</div>
-                <ul class="details">
-                    <li>Full Access to All Servers</li>
-                    <li>Unlimited Bandwidth</li>
-                    <li>24/7 Support</li>
-                    <li>No Ads</li>
-                </ul>
-                <a href="#" class="get-plan-btn">Get Plan</a>
-            </div>
+    <h3 class="section-title">VIP Subscription Plans</h3>
 
-            <div class="plan-card">
-                <h3>2 Months Plan</h3>
-                <div class="price">100 THB</div>
-                <ul class="details">
-                    <li>Full Access to All Servers</li>
-                    <li>Unlimited Bandwidth</li>
-                    <li>24/7 Support</li>
-                    <li>No Ads</li>
-                </ul>
-                <a href="#" class="get-plan-btn">Get Plan</a>
-            </div>
-
+    <div class="plans">
+        <div class="plan-card">
+            <p>1 Month Plan</p>
+            <h2>50 THB</h2>
+            <ul>
+                <li>Full Access to All Servers</li>
+                <li>Unlimited Bandwidth</li>
+                <li>24/7 Support</li>
+                <li>No Ads</li>
+            </ul>
+            <a href="#" class="get-plan-btn">Get Plan</a>
         </div>
-    </section>
+
+        <div class="plan-card">
+            <p>2 Months Plan</p>
+            <h2>100 THB</h2>
+            <ul>
+                <li>Full Access to All Servers</li>
+                <li>Unlimited Bandwidth</li>
+                <li>24/7 Support</li>
+                <li>No Ads</li>
+            </ul>
+            <a href="#" class="get-plan-btn">Get Plan</a>
+        </div>
+    </div>
+
+    <div class="redeem-section">
+        <p style="color:var(--gold); text-align: center;">Redeem Your Codes</p>
+        <div class="redeem-box">
+            <span style="font-size: 13px;">*117*30#</span>
+            <button class="copy-btn">Copy</button>
+        </div>
+    </div>
 
 </body>
 </html>
