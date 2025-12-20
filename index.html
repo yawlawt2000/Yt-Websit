@@ -43,8 +43,8 @@ body{
   color:#fff;
   box-shadow:0 0 40px rgba(0,0,0,0.7);
   animation:fadeIn 1.2s ease;
-  z-index:2;
   position:relative;
+  z-index:2;
 }
 
 /* Logo Glow */
@@ -95,7 +95,7 @@ p{
   color:#cfcfcf;
 }
 
-/* Button */
+/* Button Glow */
 .download-btn{
   display:inline-flex;
   align-items:center;
@@ -109,9 +109,20 @@ p{
   font-size:18px;
   font-weight:600;
   background:linear-gradient(90deg,#3cb878,#2da0ff);
+  box-shadow:0 0 15px rgba(45,160,255,0.6);
   animation:buttonGlow 2s infinite alternate;
+  transition:transform .2s;
 }
 
+.download-btn:hover{
+  transform:scale(1.05);
+}
+
+.download-btn span{
+  font-size:22px;
+}
+
+/* Animations */
 @keyframes pulseGlow{
   0%{box-shadow:0 0 10px #4fc3ff,0 0 25px #4fc3ff;}
   50%{box-shadow:0 0 25px #4fc3ff,0 0 50px #4fc3ff;}
@@ -124,8 +135,8 @@ p{
 }
 
 @keyframes fadeIn{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
@@ -143,7 +154,7 @@ p{
   <p>Premium VPN Services for Secure Browsing</p>
 
   <a href="https://github.com/yawlawt/YT-Plus-Apk/releases/download/V1.0.1/YT_PLUS_VPNcom.yt.plusv2.0.apk" class="download-btn">
-    ⬇ Download YT Plus APK
+    <span>⬇</span> Download YT Plus APK
   </a>
 </div>
 
@@ -151,28 +162,19 @@ p{
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 
-let w, h;
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
 let flakes = [];
 
-function resize(){
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+for(let i=0;i<120;i++){
+  flakes.push({
+    x: Math.random()*w,
+    y: Math.random()*h,
+    r: Math.random()*3+1,
+    d: Math.random()*1+0.5
+  });
 }
-window.addEventListener("resize", resize);
-resize();
-
-function createFlakes(){
-  flakes = [];
-  for(let i=0;i<120;i++){
-    flakes.push({
-      x:Math.random()*w,
-      y:Math.random()*h,
-      r:Math.random()*4+1,
-      d:Math.random()+1
-    });
-  }
-}
-createFlakes();
 
 function drawSnow(){
   ctx.clearRect(0,0,w,h);
@@ -180,27 +182,32 @@ function drawSnow(){
   ctx.beginPath();
   flakes.forEach(f=>{
     ctx.moveTo(f.x,f.y);
-    ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true);
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
   });
   ctx.fill();
   moveSnow();
 }
 
-let angle = 0;
 function moveSnow(){
-  angle += 0.01;
   flakes.forEach(f=>{
-    f.y += Math.pow(f.d,2)+1;
-    f.x += Math.sin(angle)*0.5;
-
+    f.y += f.d;
     if(f.y > h){
-      f.y = -5;
+      f.y = 0;
       f.x = Math.random()*w;
     }
   });
 }
 
-setInterval(drawSnow,25);
+function animate(){
+  drawSnow();
+  requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener("resize",()=>{
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+});
 </script>
 
 </body>
