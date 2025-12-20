@@ -1,226 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KSO VIP</title>
-
-<style>
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:#0f0f16;
-    color:#fff;
-    overflow-x:hidden;
-}
-
-/* SNOW CANVAS */
-#snow{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:999;
-}
-
-.container{
-    max-width:420px;
-    margin:auto;
-    padding:20px;
-    position:relative;
-    z-index:2;
-}
-
-.logo{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    background:linear-gradient(45deg,#ff3c3c,#ffa500);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    margin:20px auto;
-    text-align:center;
-}
-
-h1{
-    text-align:center;
-    margin:10px 0;
-}
-
-.subtitle{
-    text-align:center;
-    color:#aaa;
-    font-size:14px;
-}
-
-.section{
-    margin-top:20px;
-}
-
-.section-title{
-    padding:12px;
-    border-radius:10px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.true{ background:#ff4b4b; }
-.dtac{ background:#35c9ff; }
-.ais{ background:#7b7bff; }
-
-.package{
-    background:#1a1a25;
-    border-radius:15px;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:10px;
-}
-
-.code{
-    font-size:18px;
-}
-
-.call{
-    background:#2ecc71;
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-size:20px;
-    text-decoration:none;
-}
-
-.download{
-    margin:30px 0;
-    background:#ff3c3c;
-    padding:15px;
-    border-radius:20px;
-    text-align:center;
-    font-weight:bold;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Call Button UI</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<canvas id="snow"></canvas>
 
 <div class="container">
 
-    <div class="logo">KSO<br>VIP</div>
+  <div class="header">
+    🔥 TRUE PACKAGE
+  </div>
 
-    <h1>KSO VIP</h1>
-    <div class="subtitle">VPN Package Service</div>
-
-    <!-- TRUE -->
-    <div class="section">
-        <div class="section-title true">🔥 TRUE PACKAGE</div>
-
-        <div class="package">
-            <div class="code">*900*3507#</div>
-            <a href="tel:*900*3507#" class="call">📞</a>
-        </div>
-
-        <div class="package">
-            <div class="code">*900*3508#</div>
-            <a href="tel:*900*3508#" class="call">📞</a>
-        </div>
-
-        <div class="package">
-            <div class="code">*900*3509#</div>
-            <a href="tel:*900*3509#" class="call">📞</a>
-        </div>
+  <div class="card">
+    <div class="text">
+      *900*3507# <span>(၆ ရက်)</span>
     </div>
+    <a href="tel:*900*3507#" class="call-btn">📞</a>
+  </div>
 
-    <!-- DTAC -->
-    <div class="section">
-        <div class="section-title dtac">⚡ DTAC PACKAGE</div>
-
-        <div class="package">
-            <div class="code">*177*15#</div>
-            <a href="tel:*177*15#" class="call">📞</a>
-        </div>
-
-        <div class="package">
-            <div class="code">*177*30#</div>
-            <a href="tel:*177*30#" class="call">📞</a>
-        </div>
+  <div class="card">
+    <div class="text">
+      *900*3508# <span>(၁၂ ရက်)</span>
     </div>
+    <a href="tel:*900*3508#" class="call-btn">📞</a>
+  </div>
 
-    <!-- AIS -->
-    <div class="section">
-        <div class="section-title ais">📶 AIS PACKAGE</div>
-
-        <div class="package">
-            <div class="code">*777*7067#</div>
-            <a href="tel:*777*7067#" class="call">📞</a>
-        </div>
-
-        <div class="package">
-            <div class="code">*777*7068#</div>
-            <a href="tel:*777*7068#" class="call">📞</a>
-        </div>
+  <div class="card">
+    <div class="text">
+      *900*3509# <span>(၁၅ ရက်)</span>
     </div>
-
-    <div class="download">⬇ DOWNLOAD APK NOW</div>
+    <a href="tel:*900*3509#" class="call-btn">📞</a>
+  </div>
 
 </div>
-
-<script>
-const canvas = document.getElementById("snow");
-const ctx = canvas.getContext("2d");
-
-let w, h;
-function resize(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resize);
-resize();
-
-let flakes = [];
-for(let i=0;i<120;i++){
-    flakes.push({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        r: Math.random()*3+1,
-        d: Math.random()*1+0.5
-    });
-}
-
-function drawSnow(){
-    ctx.clearRect(0,0,w,h);
-    ctx.fillStyle="rgba(255,255,255,0.8)";
-    ctx.beginPath();
-    for(let f of flakes){
-        ctx.moveTo(f.x,f.y);
-        ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
-    }
-    ctx.fill();
-    moveSnow();
-}
-
-function moveSnow(){
-    for(let f of flakes){
-        f.y += f.d;
-        if(f.y > h){
-            f.y = 0;
-            f.x = Math.random()*w;
-        }
-    }
-}
-
-setInterval(drawSnow, 33);
-</script>
 
 </body>
 </html>
