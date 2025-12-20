@@ -3,209 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT PLUS VPN</title>
+    <title>KSO VIP - VPN Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --bg-color: #1e222d;
-            --card-bg: #272c39;
-            --primary-gradient: linear-gradient(135deg, #ff416c, #3f5efb);
-            --gold: #ff9800;
-        }
-
         body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg-color);
+            background-color: #121212;
             color: white;
+            font-family: 'Pyidaungsu', sans-serif;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            margin: 0;
+            padding: 20px;
         }
 
-        /* Top Banner */
-        .top-bar {
+        .container {
             width: 100%;
-            background: linear-gradient(to right, #e91e63, #673ab7);
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-around;
-            font-size: 12px;
-            font-weight: bold;
+            max-width: 400px;
+            background: linear-gradient(180deg, #1e1e1e 0%, #000000 100%);
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Navigation */
-        nav {
-            width: 90%;
-            max-width: 500px;
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffcc00, #ff3300);
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            border: 4px solid #ff3300;
+            box-shadow: 0 0 15px #ff3300;
+        }
+
+        h1 { font-size: 24px; margin: 15px 0 5px; letter-spacing: 2px; }
+        p { font-size: 12px; color: #aaa; margin-bottom: 20px; }
+
+        .social-icons { margin-bottom: 25px; }
+        .social-icons i {
+            font-size: 24px;
+            margin: 0 10px;
+            color: #0088cc;
+            cursor: pointer;
+        }
+
+        .section-header {
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .true { background-color: #ff0000; }
+        .dtac { background-color: #00ccff; color: #000; }
+        .ais { background-color: #99cc00; color: #000; }
+
+        .card {
+            background-color: #2a2a2a;
+            border-radius: 15px;
+            padding: 12px 20px;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            border: 1px solid #333;
         }
 
-        .logo { color: var(--gold); font-size: 18px; font-weight: bold; }
+        .card-info { text-align: left; }
+        .card-info .code { font-size: 18px; font-weight: bold; display: block; }
+        .card-info .desc { font-size: 13px; color: #ff6666; }
 
-        /* Main Download Card */
-        .hero-section {
-            width: 90%;
-            max-width: 500px;
-            background: var(--primary-gradient);
-            border-radius: 15px;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        .call-btn {
+            background-color: #00c853;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
         }
 
         .download-btn {
-            background-color: #1a1c24;
+            background-color: #ff0000;
+            padding: 15px;
+            border-radius: 15px;
+            display: block;
+            text-decoration: none;
             color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            font-size: 14px;
-            margin-top: 15px;
-        }
-
-        /* Screenshots */
-        .screenshot-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .screenshot-container img {
-            width: 140px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        /* Pricing Section */
-        .section-title { color: var(--gold); margin-bottom: 20px; }
-
-        .plans {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 90%;
-            max-width: 500px;
-            padding-bottom: 50px;
-        }
-
-        .plan-card {
-            background: linear-gradient(to bottom, #4e54c8, #df4383);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .plan-card h2 { font-size: 32px; margin: 10px 0; }
-        .plan-card ul { list-style: none; padding: 0; font-size: 13px; opacity: 0.9; }
-        .plan-card ul li { margin: 8px 0; }
-
-        .get-plan-btn {
-            background: white;
-            color: #df4383;
-            padding: 8px 25px;
-            border-radius: 20px;
-            text-decoration: none;
             font-weight: bold;
-            display: inline-block;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
-        /* Bottom Redeem Section */
-        .redeem-section {
-            width: 90%;
-            max-width: 500px;
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-
-        .redeem-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #1a1c24;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        .copy-btn {
-            background: #ff416c;
-            color: white;
-            border: none;
-            padding: 5px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <span>December 20, 2025</span>
-        <span>21:53:49</span>
-        <span>Saturday</span>
+<div class="container">
+    <div class="logo-circle">KSO<br>VIP</div>
+    <h1>KSO VIP</h1>
+    <p>ပရီမီယံ VPN ဝန်ဆောင်မှု ပက်ကေ့ချ်များ</p>
+
+    <div class="social-icons">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-telegram"></i>
+        <i class="fas fa-globe"></i>
     </div>
 
-    <nav>
-        <div class="logo">YT PLUS VPN</div>
-        <div style="color:var(--gold)">●</div>
-    </nav>
-
-    <div class="hero-section">
-        <h3>Download YT PLUS VPN</h3>
-        <p style="font-size: 12px;">Get unlimited access to content with our high-speed VPN service</p>
-        <a href="https://github.com/yawlawt/YT-Plus-Apk/releases/download/V1.0.1/YT_PLUS_VPNcom.yt.plusv2.0.apk" class="download-btn">Download APK</a>
-    </div>
-
-    <div class="screenshot-container">
-        <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/yt1.png" alt="Screen 1">
-        <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/yt2.png" alt="Screen 2">
-    </div>
-
-    <h3 class="section-title">VIP Subscription Plans</h3>
-
-    <div class="plans">
-        <div class="plan-card">
-            <p>1 Month Plan</p>
-            <h2>70 THB</h2>
-            <ul>
-                <li>Full Access to All Servers</li>
-                <li>Unlimited Bandwidth</li>
-                <li>24/7 Support</li>
-                <li>No Ads</li>
-            </ul>
-            <a href="https://m.me/yawlawt2431" class="get-plan-btn">Get Plan</a>
+    <div class="section-header true"><i class="fas fa-fire" style="margin-right:10px;"></i> TRUE TWITTER မော်ဒယ်</div>
+    <div class="card">
+        <div class="card-info">
+            <span class="code">*900*3507#</span>
+            <span class="desc">၁ ရက် (၆ ဘတ်)</span>
         </div>
-
-        <div class="plan-card">
-            <p>2 Months Plan</p>
-            <h2>130 THB</h2>
-            <ul>
-                <li>Full Access to All Servers</li>
-                <li>Unlimited Bandwidth</li>
-                <li>24/7 Support</li>
-                <li>No Ads</li>
-            </ul>
-            <a href="https://m.me/yawlawt2431" class="get-plan-btn">Get Plan</a>
-        </div>
+        <a href="tel:*900*3507#" class="call-btn"><i class="fas fa-phone"></i></a>
     </div>
 
-    <div class="redeem-section">
-        <p style="color:var(--gold); text-align: center;">Redeem Your Codes</p>
-        <div class="redeem-box">
-            <span style="font-size: 13px;">*117*30#</span>
-            <button class="copy-btn">Copy</button>
+    <div class="section-header dtac"><i class="fas fa-bolt" style="margin-right:10px;"></i> DTAC အမြန်မော်ဒယ်</div>
+    <div class="card">
+        <div class="card-info">
+            <span class="code">*177*15#</span>
+            <span class="desc">၁၅ ရက် (၁၅ ဘတ်)</span>
         </div>
+        <a href="tel:*177*15#" class="call-btn"><i class="fas fa-phone"></i></a>
     </div>
+
+    <div class="section-header ais"><i class="fas fa-signal" style="margin-right:10px;"></i> AIS 64KBPS မော်ဒယ်</div>
+    <div class="card">
+        <div class="card-info">
+            <span class="code">*777*7067#</span>
+            <span class="desc">၃၀ ရက် (၃၀ ဘတ်)</span>
+        </div>
+        <a href="tel:*777*7067#" class="call-btn"><i class="fas fa-phone"></i></a>
+    </div>
+
+    <a href="#" class="download-btn"><i class="fas fa-download"></i> APK ဒေါင်းလုဒ်လုပ်ပါ</a>
+</div>
 
 </body>
 </html>
