@@ -1,156 +1,297 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>YT VIP</title>
-  <<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #000, #1a1a1a);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YT PLUS VPN</title>
 
-    .container {
-      width: 360px;
-      background: #111;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 0 30px rgba(255,0,0,0.3);
-    }
+<style>
+/* ================= THEME ================= */
+:root{
+  --bg:#0f1720;
+  --card:#1c2430;
+  --text:#ffffff;
+  --muted:#aab;
+  --accent:linear-gradient(90deg,#ff4b7d,#7a5cff);
+}
+.light{
+  --bg:#f3f5fb;
+  --card:#ffffff;
+  --text:#000000;
+  --muted:#555;
+}
 
-    .logo {
-      text-align: center;
-      margin-bottom: 15px;
-    }
+/* ================= BASE ================= */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.4s;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+  position:relative;
+  z-index:2;
+}
 
-    .logo img {
-      width: 80px;
-    }
+/* ================= TOP BAR ================= */
+.topbar{
+  background:var(--accent);
+  padding:12px;
+  border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  text-align:center;
+  font-size:14px;
+}
+.topbar div{flex:1}
 
-    h1 {
-      text-align: center;
-      margin: 10px 0;
-      letter-spacing: 2px;
-    }
+/* ================= TOGGLE ================= */
+.toggle{
+  display:flex;
+  justify-content:flex-end;
+  margin:15px 0;
+}
+.toggle button{
+  padding:8px 14px;
+  border-radius:20px;
+  border:none;
+  cursor:pointer;
+  background:#111;
+  color:#fff;
+}
 
-    .subtitle {
-      text-align: center;
-      font-size: 13px;
-      color: #aaa;
-      margin-bottom: 15px;
-    }
+/* ================= HERO ================= */
+.hero{
+  background:var(--card);
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+  animation:fade 1s;
+}
+.hero h1{margin:10px 0}
+.hero p{color:var(--muted)}
+.download-btn{
+  margin-top:15px;
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:30px;
+  background:#000;
+  color:#fff;
+  text-decoration:none;
+}
 
-    .btn-main {
-      background: linear-gradient(to right, #ff0000, #ff5e00);
-      padding: 14px;
-      border-radius: 12px;
-      text-align: center;
-      margin-bottom: 15px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+/* ================= MOCKUP ================= */
+.mockups{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin:40px 0;
+}
+.mock{
+  background:linear-gradient(#ff4b7d,#7a5cff);
+  height:420px;
+  border-radius:25px;
+  animation:float 3s ease-in-out infinite;
+}
 
-    .card {
-      background: #1c1c1c;
-      border-radius: 12px;
-      padding: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+/* ================= PLANS ================= */
+.section-title{
+  text-align:center;
+  margin:40px 0 20px;
+  color:#f6c453;
+}
+.plans{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.plan{
+  background:var(--accent);
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  animation:fade .8s;
+}
+.plan h2{margin:10px 0}
+.plan button{
+  margin-top:15px;
+  padding:10px 20px;
+  border-radius:20px;
+  border:none;
+  cursor:pointer;
+}
 
-    .card span {
-      font-size: 14px;
-    }
+/* ================= REDEEM ================= */
+.redeem{
+  margin-top:40px;
+}
+.codes{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:15px;
+}
+.code{
+  background:var(--card);
+  padding:15px;
+  border-radius:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.code button{
+  padding:6px 12px;
+  border:none;
+  border-radius:10px;
+  background:#ff4b7d;
+  color:#fff;
+}
 
-    .call-btn {
-      background: #00c853;
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: 50%;
-      text-decoration: none;
-      font-weight: bold;
-    }
+/* ================= VIDEO ================= */
+.video{
+  margin:40px 0;
+  background:var(--card);
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+}
+.video iframe{
+  width:100%;
+  max-width:500px;
+  height:280px;
+  border-radius:15px;
+}
 
-    .section {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 12px;
-      font-size: 14px;
-      text-align: center;
-      font-weight: bold;
-    }
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  color:var(--muted);
+}
 
-    .dtac { background: #00bcd4; }
-    .ais { background: #8bc34a; }
-    .apk {
-      background: red;
-      margin-top: 20px;
-    }
-  </style>
+/* ================= SNOW ================= */
+.snow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.snow span{
+  position:absolute;
+  width:8px;height:8px;
+  background:white;
+  border-radius:50%;
+  opacity:.8;
+  animation:snow linear infinite;
+}
+@keyframes snow{
+  to{transform:translateY(110vh)}
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+</style>
 </head>
+
 <body>
+
+<div class="snow" id="snow"></div>
 
 <div class="container">
 
-  <div class="logo">
-    <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/icon.png"YT VIP">
+  <div class="topbar">
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="day"></div>
   </div>
 
-  <h1>KSO VIP</h1>
-  <div class="subtitle">မြန်မာ VPN အမြန်ဆုံး Package များ</div>
-
-  <div class="btn-main">🔥 TRUE TWITTER VPN</div>
-
-  <div class="card">
-    <span>*900*3507# (6 ရက်)</span>
-    <a href="tel:*900*3507#" class="call-btn">📞</a>
+  <div class="toggle">
+    <button onclick="toggleTheme()">🌙 / ☀</button>
   </div>
 
-  <div class="card">
-    <span>*900*3508# (12 ရက်)</span>
-    <a href="tel:*900*3508#" class="call-btn">📞</a>
+  <div class="hero">
+    <h1>Download YT PLUS VPN</h1>
+    <p>Get unlimited access with high-speed VPN</p>
+    <a class="download-btn" href="app.apk">Download APK</a>
   </div>
 
-  <div class="card">
-    <span>*900*3509# (30 ရက်)</span>
-    <a href="tel:*900*3509#" class="call-btn">📞</a>
+  <div class="mockups">
+    <div class="mock"></div>
+    <div class="mock"></div>
   </div>
 
-  <div class="section dtac">⚡ DTAC Package</div>
-
-  <div class="card">
-    <span>*177*15# (7 ရက်)</span>
-    <a href="tel:*177*15#" class="call-btn">📞</a>
+  <h2 class="section-title">VIP Subscription Plans</h2>
+  <div class="plans">
+    <div class="plan"><h2>1 Month</h2><h1>70 THB</h1><button>Get Plan</button></div>
+    <div class="plan"><h2>2 Months</h2><h1>130 THB</h1><button>Get Plan</button></div>
+    <div class="plan"><h2>3 Months</h2><h1>200 THB</h1><button>Get Plan</button></div>
   </div>
 
-  <div class="card">
-    <span>*177*30# (30 ရက်)</span>
-    <a href="tel:*177*30#" class="call-btn">📞</a>
+  <h2 class="section-title">Redeem Your Codes</h2>
+  <div class="redeem">
+    <div class="codes">
+      <div class="code"><span>*900*3509#</span><button onclick="copy(this)">Copy</button></div>
+      <div class="code"><span>*777*7067#</span><button onclick="copy(this)">Copy</button></div>
+      <div class="code"><span>*177*15#</span><button onclick="copy(this)">Copy</button></div>
+    </div>
   </div>
 
-  <div class="section ais">📶 AIS 64KBPS</div>
-
-  <div class="card">
-    <span>*777*7067# (30 ရက်)</span>
-    <a href="tel:*777*7067# " class="call-btn">📞</a>
+  <h2 class="section-title">How to Use - Video</h2>
+  <div class="video">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
   </div>
 
-  <div class="card">
-    <span>*777*7068# (60 ရက်)</span>
-    <a href="tel:*777*7068#" class="call-btn">📞</a>
-  </div>
-
-  <div class="https://download.yawlawt.online/YT_PLUS_VPNcom.yt.plusv2.0.apk">⬇ APK ဒေါင်းလုပ်လုပ်ပါ</div>
+  <footer>© 2025 YT PLUS VPN. All rights reserved.</footer>
 
 </div>
+
+<script>
+/* THEME */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  localStorage.setItem("theme",
+    document.body.classList.contains("light")?"light":"dark");
+}
+if(localStorage.getItem("theme")==="light"){
+  document.body.classList.add("light");
+}
+
+/* DATE TIME */
+function updateTime(){
+  const now=new Date();
+  date.innerText=now.toLocaleDateString();
+  time.innerText=now.toLocaleTimeString();
+  day.innerText=now.toLocaleDateString('en-US',{weekday:'long'});
+}
+setInterval(updateTime,1000);updateTime();
+
+/* COPY */
+function copy(btn){
+  navigator.clipboard.writeText(btn.previousElementSibling.innerText);
+  btn.innerText="Copied";
+}
+
+/* SNOW */
+const snow=document.getElementById("snow");
+for(let i=0;i<50;i++){
+  let s=document.createElement("span");
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDuration=(5+Math.random()*5)+"s";
+  s.style.opacity=Math.random();
+  snow.appendChild(s);
+}
+</script>
 
 </body>
 </html>
