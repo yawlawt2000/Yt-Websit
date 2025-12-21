@@ -35,9 +35,9 @@ body{
   background:radial-gradient(circle at top,var(--bg1),var(--bg2));
   display:flex;
   justify-content:center;
-  align-items:flex-start;      /* ⬅️ scroll အတွက် */
+  align-items:flex-start;
   color:var(--text);
-  overflow-y:auto;             /* ⬅️ အပေါ်အောက် ဆွဲလို့ရ */
+  overflow-y:auto;
 }
 
 /* Snow */
@@ -72,7 +72,7 @@ canvas{
   box-shadow:0 0 40px rgba(255,0,0,.35);
   position:relative;
   z-index:2;
-  margin:90px 0 40px;          /* ⬅️ top/bottom space */
+  margin:90px 0 40px;
 }
 
 /* Logo */
@@ -164,6 +164,34 @@ p{
   border-radius:50%;
 }
 
+/* Video Tutorial */
+.video-section{
+  margin:25px 0;
+}
+
+.video-section h2{
+  text-align:center;
+  color:var(--accent);
+  margin-bottom:12px;
+}
+
+.video-box{
+  position:relative;
+  width:100%;
+  padding-top:56.25%;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 0 20px rgba(255,0,0,.3);
+}
+
+.video-box iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:none;
+}
+
 /* Buttons */
 .btn{
   display:block;
@@ -184,7 +212,6 @@ p{
   background:linear-gradient(90deg,#0084ff,#00c6ff);
 }
 
-/* Desktop */
 @media (min-width:768px){
   .card{padding:40px 30px;}
 }
@@ -236,7 +263,20 @@ p{
     </div>
   </div>
 
-  <a class="btn download" href="https://github.com/yawlawt/YT-Plus-Apk/releases/download/V1.0.1/YT_PLUS_VPNcom.yt.plusv2.0.apk">🎁 Download YT Plus APK</a>
+  <!-- Video Tutorial Section -->
+  <div class="video-section">
+    <h2>🎥 Video Tutorial</h2>
+    <div class="video-box">
+      <!-- YouTube video ID ကို အောက်မှာပြောင်းနိုင် -->
+      <iframe 
+        src="https://video.yawlawt.online/ytplus-vpn-download.mp4"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <a class="btn download" href="https://download.yawlawt.online/YT_PLUS_VPNcom.yt.plusv2.0.apk">🎁 Download YT Plus APK</a>
   <a class="btn messenger" href="https://m.me/yawlawt2431" target="_blank">💬 Messenger</a>
 </div>
 
