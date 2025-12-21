@@ -2,165 +2,168 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>YT Plus VPN - Christmas Blizzard</title>
+<title>YT Plus VPN - Christmas</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box;font-family:"Segoe UI",Tahoma,sans-serif}
+*{
+  box-sizing:border-box;
+  font-family:"Segoe UI",Tahoma,sans-serif;
+}
+
 body{
   margin:0;
   min-height:100vh;
-  background:linear-gradient(135deg,#7a1f1f,#120909);
+  background:radial-gradient(circle at top,#9b2c2c,#140909);
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  color:#fff;
 }
-#effects{position:fixed;inset:0;pointer-events:none;z-index:1}
+
+/* Snow canvas */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
 
 /* Card */
 .card{
-  width:360px;max-width:90%;
-  background:rgba(15,10,10,.95);
-  border-radius:24px;
+  width:360px;
+  max-width:90%;
+  background:rgba(20,10,10,0.92);
+  border-radius:26px;
   padding:40px 25px;
   text-align:center;
-  color:#fff;
-  box-shadow:0 0 40px rgba(255,0,0,.35);
-  position:relative;z-index:2;
+  box-shadow:0 0 50px rgba(255,0,0,.35);
+  position:relative;
+  z-index:2;
+  animation:float 6s ease-in-out infinite;
 }
-.logo-wrapper{
-  width:130px;height:130px;margin:0 auto 25px;
-  border-radius:50%;border:3px solid #b71c1c;
-  display:flex;align-items:center;justify-content:center;
-  animation:glow 3s infinite;
-}
-.logo-wrapper img{width:70px;filter:drop-shadow(0 0 12px gold)}
-h1{margin:25px 0 10px;font-size:32px;color:#ffe082}
-p{margin:0 0 35px}
-.download-btn{
-  display:inline-flex;justify-content:center;align-items:center;
-  width:100%;padding:16px;border-radius:30px;
-  color:#fff;text-decoration:none;font-size:18px;
-  background:linear-gradient(90deg,#c62828,#2e7d32);
+
+/* Logo */
+.logo{
+  width:120px;
+  height:120px;
+  margin:0 auto 25px;
+  border-radius:50%;
+  border:3px solid #ffcc80;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   box-shadow:0 0 25px gold;
+  animation:spinGlow 5s linear infinite;
 }
-@keyframes glow{
-  0%{box-shadow:0 0 15px red}
-  50%{box-shadow:0 0 45px gold}
-  100%{box-shadow:0 0 15px red}
+
+.logo img{
+  width:65px;
+  filter:drop-shadow(0 0 10px gold);
+}
+
+/* Text */
+h1{
+  margin:20px 0 10px;
+  font-size:32px;
+  color:#ffe082;
+}
+
+p{
+  margin-bottom:35px;
+  opacity:.9;
+}
+
+/* Button */
+a{
+  display:block;
+  text-decoration:none;
+  padding:16px;
+  border-radius:30px;
+  font-size:18px;
+  font-weight:600;
+  color:#fff;
+  background:linear-gradient(90deg,#c62828,#2e7d32);
+  box-shadow:0 0 25px rgba(255,215,0,.6);
+  animation:pulse 2s infinite;
+}
+
+a:hover{
+  transform:scale(1.05);
+}
+
+/* Animations */
+@keyframes pulse{
+  0%{box-shadow:0 0 15px red;}
+  100%{box-shadow:0 0 40px gold;}
+}
+
+@keyframes spinGlow{
+  0%{transform:rotate(0deg);box-shadow:0 0 20px gold;}
+  50%{box-shadow:0 0 40px red;}
+  100%{transform:rotate(360deg);box-shadow:0 0 20px gold;}
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
 }
 </style>
 </head>
 
 <body>
-<canvas id="effects"></canvas>
+
+<canvas id="snow"></canvas>
 
 <div class="card">
-  <div class="logo-wrapper">
+  <div class="logo">
     <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/icon.png">
   </div>
   <h1>🎄 YT Plus VPN</h1>
-  <p>Premium VPN Services</p>
-  <a class="download-btn" href="#">🎁 Download APK</a>
+  <p>Christmas Special • Secure & Fast Browsing</p>
+  <a href="https://github.com/yawlawt/YT-Plus-Apk/releases/download/V1.0.1/YT_PLUS_VPNcom.yt.plusv2.0.apk">
+    🎁 Download YT Plus APK
+  </a>
 </div>
 
 <script>
-const c = document.getElementById("effects");
-const ctx = c.getContext("2d");
-let w = c.width = innerWidth;
-let h = c.height = innerHeight;
+const canvas=document.getElementById("snow");
+const ctx=canvas.getContext("2d");
+let w,h;
+function resize(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
 
-/* ================= HEAVY BLIZZARD ================= */
-const snow=[];
-for(let i=0;i<450;i++){
+/* Snow particles */
+let snow=[];
+for(let i=0;i<150;i++){
   snow.push({
     x:Math.random()*w,
     y:Math.random()*h,
-    r:Math.random()*3+0.5,
-    s:Math.random()*4+2,
-    dx:Math.random()*2+1
+    r:Math.random()*3+1,
+    d:Math.random()*1.5+.5
   });
 }
 
-/* ================= SNOW PILING ================= */
-let pileHeight = 0;
-
-/* ================= SANTA SLEIGH ================= */
-const santa = {
-  x:-200,
-  y:80,
-  speed:1.6
-};
-
-function drawSanta(){
-  ctx.save();
-  ctx.translate(santa.x, santa.y);
-  ctx.scale(1.2,1.2);
-
-  /* Sleigh */
-  ctx.fillStyle="#b71c1c";
-  ctx.fillRect(0,10,70,18);
-  ctx.fillStyle="gold";
-  ctx.fillRect(5,30,60,4);
-
-  /* Santa */
-  ctx.beginPath();
-  ctx.arc(55,5,8,0,Math.PI*2);
-  ctx.fillStyle="white";
-  ctx.fill();
-
-  ctx.restore();
-
-  santa.x += santa.speed;
-  santa.y += Math.sin(Date.now()/600)*0.3;
-  if(santa.x > w+200){
-    santa.x = -250;
-    santa.y = 60 + Math.random()*120;
-  }
-}
-
-/* ================= DRAW LOOP ================= */
 function draw(){
   ctx.clearRect(0,0,w,h);
-
-  /* Blizzard Snow */
-  ctx.fillStyle="rgba(255,255,255,.9)";
+  ctx.fillStyle="rgba(255,255,255,.8)";
   ctx.beginPath();
   snow.forEach(s=>{
     ctx.moveTo(s.x,s.y);
     ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    s.y += s.s;
-    s.x += s.dx;
-    if(s.y>h){
-      s.y=0;
-      s.x=Math.random()*w;
-      pileHeight += 0.03;
-    }
-    if(s.x>w) s.x=0;
+    s.y+=s.d;
+    if(s.y>h){s.y=0;s.x=Math.random()*w;}
   });
   ctx.fill();
-
-  /* Snow Pile */
-  ctx.fillStyle="#fff";
-  ctx.beginPath();
-  ctx.moveTo(0,h);
-  ctx.quadraticCurveTo(w/2,h-pileHeight,w,h);
-  ctx.lineTo(w,h);
-  ctx.closePath();
-  ctx.fill();
-
-  /* Santa */
-  drawSanta();
-
   requestAnimationFrame(draw);
 }
 draw();
-
-addEventListener("resize",()=>{
-  w=c.width=innerWidth;
-  h=c.height=innerHeight;
-});
 </script>
+
 </body>
 </html>
