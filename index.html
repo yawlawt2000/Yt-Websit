@@ -12,6 +12,7 @@
   --card-bg:rgba(20,10,10,0.92);
   --text:#ffffff;
   --accent:#ffe082;
+  --highlight:#ffeb3b;
 }
 
 body{
@@ -116,6 +117,35 @@ canvas{
   margin-bottom:12px;
 }
 
+/* ⭐ HIGHLIGHT STYLE ⭐ */
+.package.highlight{
+  border:2px solid var(--highlight);
+  background:linear-gradient(180deg,rgba(255,235,59,.15),rgba(255,255,255,.08));
+  box-shadow:0 0 25px rgba(255,235,59,.9);
+  transform:scale(1.02);
+  animation:highlightPulse 2s infinite;
+  position:relative;
+}
+
+.package.highlight::before{
+  content:"🔥 HOT";
+  position:absolute;
+  top:-12px;
+  right:14px;
+  background:#ff5722;
+  color:#fff;
+  padding:4px 10px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+@keyframes highlightPulse{
+  0%{box-shadow:0 0 15px rgba(255,235,59,.6);}
+  50%{box-shadow:0 0 35px rgba(255,235,59,1);}
+  100%{box-shadow:0 0 15px rgba(255,235,59,.6);}
+}
+
 .pkg-top{
   display:flex;
   justify-content:space-between;
@@ -201,7 +231,8 @@ canvas{
   <div class="packages">
     <h2>📦 Package Section</h2>
 
-    <div class="package">
+    <!-- ⭐ HIGHLIGHT YT PLUS VPN ⭐ -->
+    <div class="package highlight">
       <div class="pkg-top">
         <div class="pkg-info">
           <strong>YT Plus VPN – 1 Month</strong><br>
@@ -212,8 +243,8 @@ canvas{
       <a class="buy-btn" href="https://m.me/yawlawt2431" target="_blank">✅ Buy Now</a>
     </div>
 
-    <!-- NEW MYANMAR PACKAGE -->
-    <div class="package">
+    <!-- ⭐ HIGHLIGHT MYANMAR PACKAGE ⭐ -->
+    <div class="package highlight">
       <div class="pkg-top">
         <div class="pkg-info">
           <strong>Myanmar All Sim Wifi</strong><br>
